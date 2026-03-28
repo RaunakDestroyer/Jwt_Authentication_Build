@@ -1,4 +1,4 @@
-package com.jwtAuthenticationApp.configuration;
+package com.jwtAuthenticationApp.security;
 
 import java.util.Collection;
 import java.util.List;

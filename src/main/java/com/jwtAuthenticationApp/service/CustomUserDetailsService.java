@@ -1,7 +1,8 @@
-package com.jwtAuthenticationApp.configuration;
+package com.jwtAuthenticationApp.service;
 
 import java.util.Optional;
 
+import com.jwtAuthenticationApp.security.CustomUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

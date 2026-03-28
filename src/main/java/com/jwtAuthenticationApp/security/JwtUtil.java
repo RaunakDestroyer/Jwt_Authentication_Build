@@ -1,4 +1,4 @@
-package com.jwtAuthenticationApp.service;
+package com.jwtAuthenticationApp.security;
 
 import java.security.Key;
 import java.util.Date;
@@ -10,12 +10,12 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 @Component
-public class JwtService {
+public class JwtUtil {
 	
 	 @Value("${jwt.secret}")
 	  private String SECRET;
 	
-	private final long EXPIRATION = 1000 * 60 * 60;
+	private final long EXPIRATION = 1000 * 60 * 10;
 
 	private Key getKey() {
 		 System.out.println("JWT SECRET USED = " + SECRET);

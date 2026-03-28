@@ -1,16 +1,15 @@
-package com.jwtAuthenticationApp.configuration;
+package com.jwtAuthenticationApp.security;
 
 import java.io.IOException;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import com.jwtAuthenticationApp.service.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,14 +19,17 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j  // Logging framework in Java, coming from Lombok library
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	private final JwtService jwtService;
+	private final JwtUtil jwtUtil;
 	private final UserDetailsService userDetailsService;
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	 protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+
+		log.info("incoming requests: {}", request.getRequestURI());
 		String authHeader = request.getHeader("Authorization");
 
 		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -36,11 +38,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		}
 
 		String token = authHeader.substring(7);
-		String username = jwtService.extractUsername(token);
+		String username = jwtUtil.extractUsername(token);
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-			if (jwtService.validateToken(token)) {
+			if (jwtUtil.validateToken(token)) {
 
 				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 

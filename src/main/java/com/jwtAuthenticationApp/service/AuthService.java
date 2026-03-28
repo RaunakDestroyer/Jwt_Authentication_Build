@@ -1,6 +1,7 @@
 package com.jwtAuthenticationApp.service;
 
 
+import com.jwtAuthenticationApp.security.JwtUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,7 +25,7 @@ public class AuthService {
 	private final UserRepository repo;
 	private final PasswordEncoder encoder;
 	private final AuthenticationManager manager;
-	private final JwtService jwt;
+	private final JwtUtil jwt;
 	private final UserMapper mapper;
 
 	public RegisterResponseDto register(RegisterRequest request) {

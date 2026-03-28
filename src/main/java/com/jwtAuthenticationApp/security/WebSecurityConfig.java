@@ -1,4 +1,4 @@
-package com.jwtAuthenticationApp.configuration;
+package com.jwtAuthenticationApp.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class WebSecurityConfig {
 
 	private final UserDetailsService userDetailsService;
 	private final JwtAuthenticationFilter jwtFilter;

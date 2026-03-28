@@ -14,7 +14,7 @@ import com.jwtAuthenticationApp.dto.LoginResponse;
 import com.jwtAuthenticationApp.dto.RegisterRequest;
 import com.jwtAuthenticationApp.dto.RegisterResponseDto;
 import com.jwtAuthenticationApp.dto.UserResponseDto;
-import com.jwtAuthenticationApp.service.UserService;
+import com.jwtAuthenticationApp.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
 
-	private final UserService service;
+	private final AuthService service;
 	
 	@PostMapping("/register")
 	public ResponseEntity<RegisterResponseDto> registerUser(@RequestBody RegisterRequest request){

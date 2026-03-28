@@ -15,7 +15,7 @@ public class JwtService {
 	 @Value("${jwt.secret}")
 	  private String SECRET;
 	
-	private final long EXPIRATION = 1000 * 60 * 60; // 1 hour
+	private final long EXPIRATION = 1000 * 60 * 60;
 
 	private Key getKey() {
 		 System.out.println("JWT SECRET USED = " + SECRET);
@@ -23,8 +23,7 @@ public class JwtService {
 	    return Keys.hmacShaKeyFor(SECRET.getBytes());
 	}
 
-	  
-	// generate token with claims
+
 	public String generateToken(User user) {
 		return Jwts.builder()
 				.setSubject(user.getUsername())
@@ -32,7 +31,8 @@ public class JwtService {
 				.claim("role", user.getRole())
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
-				.signWith(getKey()).compact();
+				.signWith(getKey())
+				 .compact();
 	}
 
 	public boolean validateToken(String token) {

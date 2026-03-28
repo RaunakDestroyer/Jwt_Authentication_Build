@@ -11,6 +11,5 @@ public class RegisterResponseDto {
     private Long id;
     private String username;
     private String email;
-    private String message; // e.g., "user created. verify email to activate."
-    // getters/setters, constructors
+    private String message;
 }

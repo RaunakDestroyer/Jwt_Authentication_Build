@@ -6,5 +6,5 @@ import lombok.Data;
 public class UserResponseDto {
     private Long id;
     private String username;
-    private String role; // Example: "USER" or "ADMIN"
+    private String role;
 }

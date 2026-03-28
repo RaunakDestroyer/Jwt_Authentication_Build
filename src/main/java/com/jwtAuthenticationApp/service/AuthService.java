@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class AuthService {
 
 	private final UserRepository repo;
 	private final PasswordEncoder encoder;
@@ -27,7 +27,6 @@ public class UserService {
 	private final JwtService jwt;
 	private final UserMapper mapper;
 
-	// ---------------- REGISTER ----------------
 	public RegisterResponseDto register(RegisterRequest request) {
 
 		if (repo.findByUsername(request.getUsername()).isPresent()) {
@@ -49,7 +48,6 @@ public class UserService {
 		    return response;
 	}
 
-	// ---------------- LOGIN ----------------
 	public LoginResponse login(LoginRequest req) {
 
 		manager.authenticate(new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
@@ -61,7 +59,6 @@ public class UserService {
 		return new LoginResponse(token, user.getUsername(), user.getRole(), "Login successful");
 	}
 
-	// ---------------- VALIDATE FOR OTHER MICROSERVICES ----------------
 	public UserResponseDto validate(String token) {
 
 		if (!jwt.validateToken(token)) {
